@@ -1,11 +1,11 @@
 CC = gcc
 CFLAGS = -Wall -Wextra
-TARGET = hello
+TARGET = build/hello
 
 all: $(TARGET)
 
-$(TARGET): main.c
-	$(CC) $(CFLAGS) -o $(TARGET) main.c
+$(TARGET): src/main.c
+	$(CC) $(CFLAGS) -o $(TARGET) src/main.c
 
 clean:
 	rm -f $(TARGET)
