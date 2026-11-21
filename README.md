@@ -1,14 +1,19 @@
 # TP 2 - Comprendre la compilation
 
-## Generation de fichier objet de math.c et main.c
+## Compiler
 
 ```bash
-gcc -c -g -save-temps math.c -o math.o
-gcc -c -g -save-temps main.c -o main.o
+make
 ```
-## Linker et generer l'executable
+## Exécuter
 
 ```bash
-gcc math.o main.o -o calcul
-./calcul
+buil/calcul
 ```
+
+## Nettoyer
+
+```bash
+make clean
+```
+
