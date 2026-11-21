@@ -1,3 +1,6 @@
+*.o
+*.i
+*.s
 build
-repo_git
-repo_git.pub
+
+

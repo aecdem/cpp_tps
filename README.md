@@ -1,8 +1,14 @@
-# TP 1 - Hello World
+# TP 2 - Comprendre la compilation
 
-## Compliation 
-![Make build output](docs/image1.png)
+## Generation de fichier objet de math.c et main.c
 
-## Excution
-![Program output](docs/image2.png)
+```bash
+gcc -c -g -save-temps math.c -o math.o
+gcc -c -g -save-temps main.c -o main.o
+```
+## Linker et generer l'executable
 
+```bash
+gcc math.o main.o -o calcul
+./calcul
+```
