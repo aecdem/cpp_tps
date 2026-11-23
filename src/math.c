@@ -3,17 +3,20 @@
 
 int addition(int a, int b)
 {
+	multiplication(a, b);
 	return a + b;
 }
 
 int multiplication(int a, int b)
 {
+	power(a, b);
 	return a * b;
 }
 
 
 int power(int number, int exponent)
 {
+	factorial(exponent);
 	// for positf exponent
 	int result = 1;
 	while(exponent > 0)

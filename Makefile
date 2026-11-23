@@ -1,19 +1,41 @@
 CC = gcc
-CFLAGS = -Wall -g -save-temps
-TARGET = build/calcul
+COMMON_FLAGS = -Wall -Wextra
 
-all: $(TARGET)
+DEBUG_DIR = build/debug
+RELEASE_DIR = build/release
 
-$(TARGET): build/main.o build/math.o
+DEBUG_FLAGS = $(COMMON_FLAGS) -g -O0
+RELEASE_FLAGS = $(COMMON_FLAGS) -O2 -DNDEBUG
+
+DEBUG_TARGET = $(DEBUG_DIR)/calcul
+RELEASE_TARGET = $(RELEASE_DIR)/calcul
+
+HDRS = src/math.h
+
+DEBUG_OBJS = $(DEBUG_DIR)/main.o $(DEBUG_DIR)/math.o
+RELEASE_OBJS = $(RELEASE_DIR)/main.o $(RELEASE_DIR)/math.o
+
+.PHONY: all debug release clean
+
+all: debug
+
+debug: $(DEBUG_TARGET)
+
+release: $(RELEASE_TARGET)
+
+$(DEBUG_TARGET): $(DEBUG_OBJS)
 	$(CC) $^ -o $@
 
-build/main.o: src/main.c src/math.h
-	mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+$(RELEASE_TARGET): $(RELEASE_OBJS)
+	$(CC) $^ -o $@
 
-build/math.o: src/math.c src/math.h
-	mkdir -p build
-	$(CC) $(CFLAGS) -c $< -o $@
+$(DEBUG_DIR)/%.o: src/%.c $(HDRS)
+	mkdir -p $(DEBUG_DIR)
+	$(CC) $(DEBUG_FLAGS) -c $< -o $@
+
+$(RELEASE_DIR)/%.o: src/%.c $(HDRS)
+	mkdir -p $(RELEASE_DIR)
+	$(CC) $(RELEASE_FLAGS) -c $< -o $@
 
 clean:
 	rm -rf build *.i *.s
