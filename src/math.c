@@ -16,9 +16,11 @@ int multiplication(int a, int b)
 
 int power(int number, int exponent)
 {
+	int tab[6] = {2, 1, 5, 3, 8, 9};
 	factorial(exponent);
 	// for positf exponent
 	int result = 1;
+	tab[8] = 11;
 	while(exponent > 0)
 	{
 		result *= number;
