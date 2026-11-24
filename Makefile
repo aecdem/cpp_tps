@@ -26,7 +26,10 @@ libs: $(DYN_LIB) $(STA_LIB)
 $(DYN_LIB): src/lib/dynamicCalculator/dynamic_math.c src/lib/dynamicCalculator/dynamic_math.h
 	mkdir -p $(DEBUG_DIR)
 	$(CC) $(COMMON_FLAGS) -fPIC -c $< -o $(DEBUG_DIR)/dynamic_math.o
-	$(CC) -shared $(DEBUG_DIR)/dynamic_math.o -o $@
+	$(CC) -shared -Wl,-soname,libdynamicCalculator.so.1 $(DEBUG_DIR)/dynamic_math.o -o src/lib/dynamicCalculator/libdynamicCalculator.so.1.0.0
+	ln -sf libdynamicCalculator.so.1.0.0 src/lib/dynamicCalculator/libdynamicCalculator.so.1
+	ln -sf libdynamicCalculator.so.1 $@
+		
 
 $(STA_LIB): src/lib/staticCalculator/static_math.c src/lib/staticCalculator/static_math.h
 	mkdir -p $(DEBUG_DIR)
@@ -62,3 +65,4 @@ run: debug
 
 clean:
 	rm -rf build bin $(DYN_LIB) $(STA_LIB) *.i *.s
+	rm -rf build bin src/lib/dynamicCalculator/*.so* $(STA_LIB) *.i *.s
