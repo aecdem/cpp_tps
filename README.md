@@ -1,19 +1,8 @@
-# TP 2 - Comprendre la compilation
+# TP 7 - Cmake
 
 ## Compiler
 
 ```bash
-make
+cmake -S . -B build
+cmake --build build
 ```
-## Exécuter
-
-```bash
-buil/calcul
-```
-
-## Nettoyer
-
-```bash
-make clean
-```
-
